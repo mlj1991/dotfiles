@@ -338,18 +338,17 @@ you should place your code here."
   (setq-default js-indent-level 2)
 
   ;; org config for GTD
+  (setq org-capture-templates '(("t" "Task [inbox]" entry
+                                 (file+headline "~/.gtd/inbox.org" "Task")
+                                 "* TODO %i%?")
+                                ("n" "Note [inbox]" entry
+                                 (file+headline "~/.gtd/inbox.org" "Note")
+                                 "* %i%?")))
   (setq org-agenda-files '("~/.gtd/inbox.org"
                            "~/.gtd/project.org"
                            "~/.gtd/reminder.org"))
-  (setq org-capture-templates '(("t" "Todo [inbox]" entry
-                                 (file+headline "~/.gtd/inbox.org" "Tasks")
-                                 "* TODO %i%?")
-                                ("r" "Reminder" entry
-                                 (file+headline "~/.gtd/reminder.org" "Reminder")
-                                 "* %i%? \n %U")))
-  (setq org-refile-targets '(("~/.gtd/project.org" :maxlevel . 3)
-                             ("~/.gtd/someday.org" :level . 1)
-                             ("~/.gtd/reminder.org" :maxlevel . 2)))
+  (setq org-refile-targets '(("~/.gtd/project.org" :maxlevel . 2)
+                             ("~/.gtd/someday.org" :level . 1)))
   (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
 ;;  (setq org-agenda-custom-commands
 ;;        '(("o" "At the office" tags-todo "@office"
