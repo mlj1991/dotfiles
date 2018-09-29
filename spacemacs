@@ -32,12 +32,12 @@ values."
    dotspacemacs-configuration-layers
    '(
      rust
-     vimscript
-     octave
      html
-     ansible
-     (python :variables python-sort-imports-on-save t)
      yaml
+     docker
+     ansible
+     vimscript
+     (python :variables python-sort-imports-on-save t)
      (javascript :variables javascript-disable-tern-port-files nil)
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
@@ -46,12 +46,11 @@ values."
          gofmt-command "goimports"
          go-use-gometalinter t
          go-tab-width 4)
-     docker
+     java
      (scala :variables
             scala-enable-eldoc t
             scala-auto-start-ensime t
             scala-auto-insert-asterisk-in-comments t)
-     java
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -336,39 +335,6 @@ you should place your code here."
 
   (setq-default js2-basic-offset 2)
   (setq-default js-indent-level 2)
-
-  ;; org config for GTD
-  (setq org-capture-templates '(("t" "Task [inbox]" entry
-                                 (file+headline "~/.gtd/inbox.org" "Task")
-                                 "* TODO %i%?")
-                                ("n" "Note [inbox]" entry
-                                 (file+headline "~/.gtd/inbox.org" "Note")
-                                 "* %i%?")))
-  (setq org-agenda-files '("~/.gtd/inbox.org"
-                           "~/.gtd/project.org"
-                           "~/.gtd/reminder.org"))
-  (setq org-refile-targets '(("~/.gtd/project.org" :maxlevel . 2)
-                             ("~/.gtd/someday.org" :level . 1)))
-  (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
-;;  (setq org-agenda-custom-commands
-;;        '(("o" "At the office" tags-todo "@office"
-;;           ((org-agenda-overriding-header "Office")
-;;            (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))))
-;;  (defun my-org-agenda-skip-all-siblings-but-first ()
-;;    "Skip all but the first non-done entry."
-;;    (let (should-skip-entry)
-;;      (unless (org-current-is-todo)
-;;        (setq should-skip-entry t))
-;;      (save-excursion
-;;        (while (and (not should-skip-entry) (org-goto-sibling t))
-;;          (when (org-current-is-todo)
-;;            (setq should-skip-entry t))))
-;;      (when should-skip-entry
-;;        (or (outline-next-heading)
-;;            (goto-char (point-max))))))
-;;
-;;  (defun org-current-is-todo ()
-;;    (string= "TODO" (org-get-todo-state)))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -380,7 +346,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (toml-mode racer flycheck-rust cargo rust-mode flyspell-correct-helm flyspell-correct auto-dictionary org-projectile vimrc-mode dactyl-mode disaster company-c-headers cmake-mode clang-format yapfify yaml-mode xterm-color web-mode web-beautify vmd-mode tagedit smeargle slim-mode shell-pop scss-mode sass-mode pyvenv pytest pyenv-mode py-isort pug-mode pip-requirements orgit org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download noflet multi-term mmm-mode markdown-toc markdown-mode magit-gitflow livid-mode skewer-mode simple-httpd live-py-mode js2-refactor multiple-cursors js2-mode js-doc jinja2-mode hy-mode htmlize helm-pydoc helm-gitignore helm-css-scss helm-company helm-c-yasnippet haml-mode go-guru go-eldoc gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flycheck-pos-tip pos-tip flycheck-gometalinter flycheck evil-magit magit git-commit ghub with-editor eshell-z eshell-prompt-extras esh-help ensime sbt-mode scala-mode emmet-mode dockerfile-mode docker json-mode tablist magit-popup docker-tramp json-snatcher json-reformat cython-mode company-web web-completion-data company-tern dash-functional tern company-statistics company-go go-mode company-emacs-eclim eclim company-ansible company-anaconda company coffee-mode auto-yasnippet yasnippet ansible-doc ansible anaconda-mode pythonic ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-key auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
+    (toml-mode racer flycheck-rust cargo rust-mode yapfify yaml-mode xterm-color web-mode web-beautify vmd-mode vimrc-mode tagedit smeargle slim-mode shell-pop scss-mode sass-mode pyvenv pytest pyenv-mode py-isort pug-mode pip-requirements orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download noflet multi-term mmm-mode markdown-toc markdown-mode magit-gitflow livid-mode skewer-mode simple-httpd live-py-mode js2-refactor multiple-cursors js2-mode js-doc jinja2-mode hy-mode htmlize helm-pydoc helm-gitignore helm-css-scss helm-company helm-c-yasnippet haml-mode go-guru go-eldoc gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flycheck-pos-tip pos-tip flycheck-gometalinter flycheck evil-magit magit git-commit ghub treepy graphql with-editor eshell-z eshell-prompt-extras esh-help ensime sbt-mode scala-mode emmet-mode dockerfile-mode docker json-mode tablist magit-popup docker-tramp json-snatcher json-reformat disaster dactyl-mode cython-mode company-web web-completion-data company-tern dash-functional tern company-statistics company-go go-mode company-emacs-eclim eclim company-c-headers company-ansible company-anaconda company coffee-mode cmake-mode clang-format auto-yasnippet yasnippet ansible-doc ansible anaconda-mode pythonic ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
