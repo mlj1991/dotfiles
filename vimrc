@@ -51,8 +51,10 @@ set wildmenu
 
 " 配色方案
 set background=dark
-colorscheme solarized
-
+try
+  colorscheme solarized
+  catch
+endtry
 
 
 autocmd FileType python set omnifunc=pythoncomplete
