@@ -51,6 +51,7 @@ set wildmenu
 
 " 配色方案
 set background=dark
+let g:solarized_termcolors=256
 try
   colorscheme solarized
   catch
