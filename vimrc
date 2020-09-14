@@ -67,3 +67,4 @@ autocmd FileType php set omnifunc=phpcomplete
 autocmd FileType c set omnifunc=ccomplete
 
 
+set tags=./.tags;,.tags
